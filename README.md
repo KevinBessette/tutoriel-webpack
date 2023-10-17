@@ -175,3 +175,68 @@ Mais attention, comme vous n'avez plus besoin du type="module", n'oubliez d'ajou
 
 </html>
 ```
+
+
+## Personnalisation
+Notez que les noms : main.js, dist/ et src/ sont choisi spécialement pour fonctionner avec les configurations par défaut de webpack.  
+Nous pouvons les modifier en créant un fichier webpack.config.js à la racine du projet.
+````
++ webpack.config.js
+``
+Ajouter le contenu suivant dedans:
+```
+const path = require('path');
+
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
+```
+Le fichier de configuration sera utilisé automatiquement si un fichier du nom de webpack.config.js existe à la racine du projet.  
+Nous pouvons toutefois préciser un fichier de configuration avec un autre nom en passant celui-ci en argument dans la commande.
+```
+npx webpack --config webpack.config.js
+```
+## Script NodeJs
+Il est aussi possible d’ajouter des scripts à notre fichier package.json.  
+Ces scripts peuvent ensuite être exécutés avec la commande npm run.
+
+Ajoutons un script pour exécuter webpack dans la section 'scripts' du fichier package.json
+```
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
++    "build": "webpack --config webpack.config.js"
+  },
+```
+Tester le script avec la commande :
+```
+npm run build
+```
+
+## Surveiller le répertoire
+Évidemment, compiler un build webpack à chaque fois que nous voulons tester nos modifications peut être redondant.  C’est pourquoi nous allons le configurer pour surveiller notre répertoire de développement.
+
+Ajouter les propriétés watch et watchOptions avec les valeurs ci-dessous, dans le fichier webpack.config.js
+```
+module.exports = {
++  watch: true,
++  watchOptions: {
+    ignored: /node_modules/  
+  },
+  entry: './src/index.js',
+  output: {
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist')
+  }
+};
+```
+
+Avec cette propriété, une fois le build initial créé, webpack surveillera les modifications afin de relancer automatiquement un nouveau build à chaque changement dans le code source.  
+On lui spécifiera d’ignorer le dossier node_modules, qui contient tous les fichiers ajoutés via npm install et qui est très lourd à surveiller, pour des raisons de performance, de toute façon un module node doit être importé dans un fichier pour être utilisé.
+
+Faites ctrl-c pour arrêter la surveillance.
+
+# Bravo!
