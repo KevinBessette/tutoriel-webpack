@@ -180,9 +180,9 @@ Mais attention, comme vous n'avez plus besoin du type="module", n'oubliez d'ajou
 ## Personnalisation
 Notez que les noms : main.js, dist/ et src/ sont choisi spécialement pour fonctionner avec les configurations par défaut de webpack.  
 Nous pouvons les modifier en créant un fichier webpack.config.js à la racine du projet.
-````
+```
 + webpack.config.js
-``
+```
 Ajouter le contenu suivant dedans:
 ```
 const path = require('path');
