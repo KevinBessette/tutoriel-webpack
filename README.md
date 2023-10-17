@@ -156,7 +156,9 @@ dist/
 
 ## Faire pointer votre fichier html sur le fichier unifié
 Modifier le fichier index.html pour pointer sur le fichier dist/main.js
+
 Vous pouvez retirer le type="module" puisqu'il n'y en a plus, tout les modules sont unifiés.
+
 Mais attention, comme vous n'avez plus besoin du type="module", n'oubliez d'ajouter le 'defer' comme on faisait en début de session.
 ```
 <!DOCTYPE html>
@@ -236,7 +238,9 @@ module.exports = {
 
 Avec cette propriété, une fois le build initial créé, webpack surveillera les modifications afin de relancer automatiquement un nouveau build à chaque changement dans le code source.  
 On lui spécifiera d’ignorer le dossier node_modules, qui contient tous les fichiers ajoutés via npm install et qui est très lourd à surveiller, pour des raisons de performance, de toute façon un module node doit être importé dans un fichier pour être utilisé.
-
+```
+npm run build
+```
 Faites ctrl-c pour arrêter la surveillance.
 
 # Bravo!
