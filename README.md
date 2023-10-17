@@ -1,13 +1,12 @@
 # tutoriel-webpack
 
 ## Créer l’arborescence du projet suivante :
-
+```
 webpack-tutorial
-   | -package.json (sera créé avec la commande npm init)
 +  | - index.html
 +  | -  src/index.js
 +  | -  src/components/helloworld.js
-
+```
 ## Ajouter le code suivant dans helloworld.js
 ```
 export default function helloworld() {
