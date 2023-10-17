@@ -140,3 +140,38 @@ import helloworld from './components/helloworld.js'
 
 $('body').append(helloworld());
 ```
+
+## Créer un build Webpack
+Exécuter la commande suivant dans la console.
+```
+npx webpack
+```
+Cela devrait avoir créer un dossier 'dist/' contenant le code source unifié et minifié.  
+
+Ajouter le dossier dist/ à votre .gitignore pour ne pas versionner la version de build.
+```
+node_modules/
+dist/
+```
+
+## Faire pointer votre fichier html sur le fichier unifié
+Modifier le fichier index.html pour pointer sur le fichier dist/main.js
+Vous pouvez retirer le type="module" puisqu'il n'y en a plus, tout les modules sont unifiés.
+Mais attention, comme vous n'avez plus besoin du type="module", n'oubliez d'ajouter le 'defer' comme on faisait en début de session.
+```
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./dist/main.js" defer></script>
+    <title>Mon premier build Webpack</title>
+</head>
+
+<body>
+
+</body>
+
+</html>
+```
